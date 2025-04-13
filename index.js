@@ -2,32 +2,42 @@
 let gameStart = false;
 
 const gameBoard ={
-    gameBoard:[[null,null,null]
+    board:[[null,null,null]
               ,[null,null,null]
               ,[null,null,null]],
 }
 
 const firstPlayer={
-    key :"X"
+    marker :"X"
 }
 
 
 const secondPlayer ={
-    key:"O"
+    marker:"O"
 }
 
 
-function controlFlow(){
-   if(gameStart === true) {
+ let positions = [gameBoard.board[0][0],gameBoard.board[0][1],gameBoard.board[0][2],
+                  gameBoard.board[1][0],gameBoard.board[1][1],gameBoard.board[1][2],
+                  gameBoard.board[2][0],gameBoard.board[2][1],gameBoard.board[2][2]]
 
-
-    playGame(firstPlayer.key)
-   }
-}
-
-function playGame(player){
-    for(let slab of  gameBoard.gameBoard){
-        Math.random(slab)
+function firstPlayerPlays(){
+    let random = Math.floor(Math.random()* positions.length);
+    if (positions.value=== null){
+    return  positions[random].push(firstPlayer.marker)
     }
-    
+    updateGameBoard()
 }
+
+function playGame(){
+    gameStart === true;
+    firstPlayerPlays();
+    secondPlayerPlays()
+}
+
+function updateGameBoard(){
+    console.log(gameBoard.gameBoard)
+
+}
+
+ 
