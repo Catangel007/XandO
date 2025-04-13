@@ -2,18 +2,22 @@
 let gameStart = false;
 
 const gameBoard ={
-    board:[[null,null,null]
+        board:[[null,null,null]
               ,[null,null,null]
               ,[null,null,null]],
 }
 
 const firstPlayer={
-    marker :"X"
+    marker :"X",
+    score:0,
+    name:"first player",
 }
 
 
 const secondPlayer ={
-    marker:"O"
+    marker:"O",
+    score:0,
+    name:"second player",
 }
 
 
@@ -37,16 +41,55 @@ function secondPlayerPlays(){
     updateGameBoard()
 }
 function playGame(){
-    gameStart === true;
+  if(gameStart === true) {
     firstPlayerPlays();
     if(firstPlayerPlays){
         secondPlayerPlays()
     }
-}playGame()
+    winningLogic()
+}}playGame()
 
 function updateGameBoard(){
     console.log(gameBoard.board)
 
 }
 
- 
+function winningLogic(){
+    if (positions[0]&&positions[1]&&positions[2]=== "X"){
+        firstPlayer.score += 5;
+        console.log(`first player scores ${firstPlayer.score} points`)
+    }else if(positions[3]&&positions[4]&&positions[5] ==="X"){
+        firstPlayer.score += 5;
+        console.log(`first player scores ${firstPlayer.score} points`)
+    }else if(positions[6]&&positions[7]&&positions[8] ==="X"){
+        firstPlayer.score += 5;
+        console.log(`first player scores ${firstPlayer.score} points`)
+    }else if(positions[0]&&positions[4]&&positions[8] ==="X"){
+        firstPlayer.score += 5;
+        console.log(`first player scores ${firstPlayer.score} points`)
+    }else if(positions[6]&&positions[4]&&positions[2] ==="X"){
+        firstPlayer.score += 5;
+        console.log(`first player scores ${firstPlayer.score} points`)
+    }else if(positions[0]&&positions[1]&&positions[2] ==="O"){
+        secondPlayer.score += 5;
+        console.log(`second player scores ${secondPlayer.score} points`)
+    }else if(positions[3]&&positions[4]&&positions[5] ==="O"){
+        secondPlayer.score += 5;
+        console.log(`second player scores ${secondPlayer.score} points`)
+    }else if(positions[6]&&positions[7]&&positions[8] ==="O"){
+        secondPlayer.score += 5;
+        console.log(`second player scores ${secondPlayer.score} points`)
+    }else if(positions[0]&&positions[4]&&positions[8] ==="O"){
+        secondPlayer.score += 5;
+        console.log(`second player scores ${secondPlayer.score} points`)
+    }else if(positions[6]&&positions[4]&&positions[2] ==="O"){
+        secondPlayer.score += 5;
+        console.log(`second player scores ${secondPlayer.score} points`)
+    }else if(positions[3]&&positions[4]&&positions[5] ==="O"){
+        secondPlayer.score += 5;
+        console.log(`second player scores ${secondPlayer.score} points`)
+    }else(
+      //  nextRound()
+    )
+}
+
