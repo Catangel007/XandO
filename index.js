@@ -24,19 +24,28 @@ const secondPlayer ={
 function firstPlayerPlays(){
     let random = Math.floor(Math.random()* positions.length);
     if (positions.value=== null){
-    return  positions[random].push(firstPlayer.marker)
+    return  positions[random]=firstPlayer.marker;
     }
     updateGameBoard()
 }
 
+function secondPlayerPlays(){
+    let random = Math.floor(Math.random()* positions.length);
+    if (positions.value=== null){
+    return  positions[random]=secondPlayer.marker;
+    }
+    updateGameBoard()
+}
 function playGame(){
     gameStart === true;
     firstPlayerPlays();
-    secondPlayerPlays()
-}
+    if(firstPlayerPlays){
+        secondPlayerPlays()
+    }
+}playGame()
 
 function updateGameBoard(){
-    console.log(gameBoard.gameBoard)
+    console.log(gameBoard.board)
 
 }
 
