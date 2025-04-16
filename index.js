@@ -28,44 +28,49 @@ const secondPlayer ={
 
 let positions = gameBoard.board.flat();
 function firstPlayerPlays(){
-    console.log("first player has played")
-    let random = Math.floor(Math.random()* (positions.length-1));
-//    return positions.filter( (row)=> row==="null").map((positions)=> positions[random]=firstPlayer.marker)
+    console.log("first player plays X")
+    let random = Math.floor(Math.random()* (positions.length))
+  // return positions.filter( (row)=> row==="null").map((positions)=> positions[random]=firstPlayer.marker)
 for (let choice=0; choice < 1; choice++){
     let randomPosition = positions[random];
        if(randomPosition === "null"){
         positions[random]= firstPlayer.marker ;
             updateGameBoard()
+       }else{
+        let secondRandom = positions[random];
+        if(secondRandom === "null"){
+            positions[random]= firstPlayer.marker ;
+                updateGameBoard()}
        }
     }
    
+
 };
 
 function secondPlayerPlays(){
-    console.log("Second player has played")
-    let random = Math.floor(Math.random()* (positions.length-1));
+    console.log("Second player plays O")
+    let random = Math.floor(Math.random()* (positions.length))
     for (let choice=0; choice < 1; choice++){
        let randomPosition = positions[random];
        if(randomPosition === "null"){
         positions[random]= secondPlayer.marker ;
             updateGameBoard()
-       }
-        
-  }
-          }
+       }else{
+        choice <=1; choice++;
+       }   
+  }}
 
 
 function playGame(){
   if(gameStart === true) {
-    // firstPlayerPlays();
-    // if(firstPlayerPlays){
-    //     secondPlayerPlays()
-    // }
-    // winningLogic()
-    setTimeout(() => {
-      firstPlayerPlays() 
-      winningLogic() 
-    }, 3000).then(secondPlayerPlays())
+     firstPlayerPlays();
+     winningLogic()
+     if(firstPlayerPlays){
+         secondPlayerPlays()
+         winningLogic()
+     }
+     
+   
 }}playGame()
 
 function updateGameBoard(){
@@ -74,34 +79,34 @@ function updateGameBoard(){
 }
 
 function winningLogic(){
-    if (positions[0]&&positions[1]&&positions[2]=== "X"){
+    if (positions[0]==="X"&&positions[1]==="X"&&positions[2]=== "X"){
         firstPlayer.score += 5;
         console.log(`first player scores ${firstPlayer.score} points`)
-    }else if(positions[3]&&positions[4]&&positions[5] ==="X"){
+    }else if(positions[3]==="X"&&positions[4]==="X"&&positions[5] ==="X"){
         firstPlayer.score += 5;
         console.log(`first player scores ${firstPlayer.score} points`)
-    }else if(positions[6]&&positions[7]&&positions[8] ==="X"){
+    }else if(positions[6]==="X"&&positions[7]==="X"&&positions[8] ==="X"){
         firstPlayer.score += 5;
         console.log(`first player scores ${firstPlayer.score} points`)
-    }else if(positions[0]&&positions[4]&&positions[8] ==="X"){
+    }else if(positions[0]==="X"&&positions[4]==="X"&&positions[8] ==="X"){
         firstPlayer.score += 5;
         console.log(`first player scores ${firstPlayer.score} points`)
-    }else if(positions[6]&&positions[4]&&positions[2] ==="X"){
+    }else if(positions[6]==="X"&&positions[4]==="X"&&positions[2] ==="X"){
         firstPlayer.score += 5;
         console.log(`first player scores ${firstPlayer.score} points`)
-    }else if(positions[0]&&positions[1]&&positions[2] ==="O"){
+    }else if(positions[0]==="O"&&positions[1]==="O"&&positions[2] ==="O"){
         secondPlayer.score += 5;
         console.log(`second player scores ${secondPlayer.score} points`)
-    }else if(positions[3]&&positions[4]&&positions[5] ==="O"){
+    }else if(positions[3]==="O"&&positions[4]==="O"&&positions[5] ==="O"){
         secondPlayer.score += 5;
         console.log(`second player scores ${secondPlayer.score} points`)
-    }else if(positions[6]&&positions[7]&&positions[8] ==="O"){
+    }else if(positions[6]==="O"&&positions[7]==="O"&&positions[8] ==="O"){
         secondPlayer.score += 5;
         console.log(`second player scores ${secondPlayer.score} points`)
-    }else if(positions[0]&&positions[4]&&positions[8] ==="O"){
+    }else if(positions[0]==="O"&&positions[4]==="O"&&positions[8] ==="O"){
         secondPlayer.score += 5;
         console.log(`second player scores ${secondPlayer.score} points`)
-    }else if(positions[6]&&positions[4]&&positions[2] ==="O"){
+    }else if(positions[6]==="O"&&positions[4]==="O"&&positions[2] ==="O"){
         secondPlayer.score += 5;
         console.log(`second player scores ${secondPlayer.score} points`)
     } else(
@@ -110,3 +115,5 @@ function winningLogic(){
      )
 }
 
+let currentPlayer = "X";
+currentPlayer = "X"?"O":"X";
