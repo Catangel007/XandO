@@ -13,6 +13,7 @@ const gameState ={
 
         switchTurns(){
             gameState.currentPlayer === "X"?"O":"X";
+            return;
         }
 }
 
@@ -44,45 +45,22 @@ function updateGameBoard(){
 
 }updateGameBoard()
 
-function winningLogic(){
+function winningLogic(board){
      let conditions = [[0,1,2],[3,4,5],[6,7,8],   //horizontal matching
                        [0,3,6],[1,4,7],[2,5,8],   // vertical matching
                        [0,4,8],[6,4,2]]           //diagonal matching
 
-    // if (positions[0]==="X"&&positions[1]==="X"&&positions[2]=== "X"){
-    //     firstPlayer.score += 5;
-    //     console.log(`first player scores ${firstPlayer.score} points`)
-    // }else if(positions[3]==="X"&&positions[4]==="X"&&positions[5] ==="X"){
-    //     firstPlayer.score += 5;
-    //     console.log(`first player scores ${firstPlayer.score} points`)
-    // }else if(positions[6]==="X"&&positions[7]==="X"&&positions[8] ==="X"){
-    //     firstPlayer.score += 5;
-    //     console.log(`first player scores ${firstPlayer.score} points`)
-    // }else if(positions[0]==="X"&&positions[4]==="X"&&positions[8] ==="X"){
-    //     firstPlayer.score += 5;
-    //     console.log(`first player scores ${firstPlayer.score} points`)
-    // }else if(positions[6]==="X"&&positions[4]==="X"&&positions[2] ==="X"){
-    //     firstPlayer.score += 5;
-    //     console.log(`first player scores ${firstPlayer.score} points`)
-    // }else if(positions[0]==="O"&&positions[1]==="O"&&positions[2] ==="O"){
-    //     secondPlayer.score += 5;
-    //     console.log(`second player scores ${secondPlayer.score} points`)
-    // }else if(positions[3]==="O"&&positions[4]==="O"&&positions[5] ==="O"){
-    //     secondPlayer.score += 5;
-    //     console.log(`second player scores ${secondPlayer.score} points`)
-    // }else if(positions[6]==="O"&&positions[7]==="O"&&positions[8] ==="O"){
-    //     secondPlayer.score += 5;
-    //     console.log(`second player scores ${secondPlayer.score} points`)
-    // }else if(positions[0]==="O"&&positions[4]==="O"&&positions[8] ==="O"){
-    //     secondPlayer.score += 5;
-    //     console.log(`second player scores ${secondPlayer.score} points`)
-    // }else if(positions[6]==="O"&&positions[4]==="O"&&positions[2] ==="O"){
-    //     secondPlayer.score += 5;
-    //     console.log(`second player scores ${secondPlayer.score} points`)
-    // } else(
+    for (let condition of conditions){
+    const [a,b,c] = condition;
+    }
+    if (board[a]&&board[a]=== board[b]&& board[a] === board[c]){
+    return board[a];
+    }
+    if (!board.includes(null)){
+    return "tie";
+    }
+    return null;
     
-    //     console.log("No one wins this round , good luck on the next round!")
-    //  )
 }
 
 
