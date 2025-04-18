@@ -8,7 +8,6 @@ const gameState ={
               ,[null,null,null]],
         positions : gameState.board.flat(),
         currentPlayer: "X",
-        winner:null,
         gameStatus:"in Progress",
 
         switchTurns(){
@@ -37,6 +36,16 @@ const secondPlayer ={
 function playGame(){
   if(gameStart === true) {
     //duh
+   const winner= winningLogic(gameState.board);
+   if(winner === "X"){
+    console.log(`${firstPlayer.name} wins`)
+   } else if(winner === "O"){
+    console.log(`${secondPlayer.name} wins`)
+   } else if(winner === "tie"){
+    console.log(`it is a tie.`)
+   }else{
+    console.log("Game in Progress")
+   }
      }  
 }playGame()
 
