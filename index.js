@@ -11,7 +11,7 @@ const gameState ={
         gameStatus:"in Progress",
 
         switchTurns(){
-            gameState.currentPlayer === "X"?"O":"X";
+            this.currentPlayer === "X"?"O":"X";
             return;
         }
 }
@@ -33,9 +33,30 @@ const secondPlayer ={
 
 
 // play game with our objects.
-function playGame(){
+function playGame(array){
+    
+    let random = Math.floor(Math.random() * gameState.array.length);
   if(gameStart === true) {
-    //duh
+
+     //check for empty array
+  for(let arr of array){
+    if (gameState.currentPlayer==="X"&& arr === null){
+           gameState.array[random]= firstPlayer.marker;
+           gameState.switchTurns();
+        }
+           
+        else if(gameState.currentPlayer==="O"&& arr === null){
+            gameState.array[random]= secondPlayer.marker;
+            gameState.switchTurns();
+           }
+
+ }
+
+  }
+
+
+
+
    const winner= winningLogic(gameState.board);
    if(winner === "X"){
     console.log(`${firstPlayer.name} wins`)
@@ -46,8 +67,7 @@ function playGame(){
    }else{
     console.log("Game in Progress")
    }
-     }  
-}playGame()
+     }playGame(gameState.board)
 
 function updateGameBoard(){
     console.log(gameState.positions)
