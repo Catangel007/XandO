@@ -1,20 +1,21 @@
 console.log("Welcome to tictactoe console game!");
 
-let gameStart = false;
+//let gameStart = false;
 
 const gameState ={
         board:[[null,null,null]
               ,[null,null,null]
               ,[null,null,null]],
-        positions : gameState.board.flat(),
+        
         currentPlayer: "X",
         gameStatus:"in Progress",
 
         switchTurns(){
-            this.currentPlayer === "X"?"O":"X";
-            return;
+          return  this.currentPlayer === "X"?"O":"X";
+            
         }
 }
+let positions = gameState.board.flat();
 
 const firstPlayer={
     marker :"X",
@@ -33,54 +34,69 @@ const secondPlayer ={
 
 
 // play game with our objects.
-function playGame(array){
-
-if(gameStart === true){ 
-
-            
-            let random = Math.floor(Math.random() * array.length);
-            //check for empty array
+function playGame(){
+    
+        let board = positions; // Assuming positions is defined elsewhere
+        let current = gameState.currentPlayer;
         
-            if (gameState.currentPlayer==="X" && array=== null){
-                gameState.array[random]= firstPlayer.marker; //select random position that is equal to null and put marker.
-                gameState.switchTurns();
-                updateGameBoard()
-
-                } else if(gameState.currentPlayer==="O"&& array === null){
-                    gameState.array[random]= secondPlayer.marker;//select random position that is equal to null and put marker.
-                    gameState.switchTurns();
-                    updateGameBoard()
-                }
-                    
-                
-       
-       
-
-} }
-     playGame(gameState.board)
+        // Filter for empty positions
+        let emptyPositions = [];
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] === null || board[i] === undefined) {
+                emptyPositions.push(i);
+            }
+        }
+        
+        // Check if there are any empty positions
+        if (emptyPositions.length === 0) {
+            isGameOver()
+            return board; // Board is full
+        }
+        
+        // Select random empty position
+        let randomIndex = Math.floor(Math.random() * emptyPositions.length);
+        let randomPosition = emptyPositions[randomIndex];
+        
+        if (current === "X") {
+            board[randomPosition] = firstPlayer.marker;
+            gameState.switchTurns();
+            updateGameBoard()
+        } else if (current === "O") {
+            board[randomPosition] = secondPlayer.marker;
+            gameState.switchTurns();
+            updateGameBoard()
+        }
+        
+        return board;
+    
+ }
+     playGame()
 
 function updateGameBoard(){
     console.log(gameState.positions)
 
-}updateGameBoard()
+}
+const winner= winningLogic(gameState.board);
+
+
 
 function winningLogic(board){
-    const winner= winningLogic(board);
+    
      let conditions = [[0,1,2],[3,4,5],[6,7,8],   //horizontal matching
                        [0,3,6],[1,4,7],[2,5,8],   // vertical matching
                        [0,4,8],[6,4,2]]           //diagonal matching
 
     for (let condition of conditions){
-    const [a,b,c] = condition;
-    }
+        const [a,b,c] = condition;
+    
     if (board[a]&&board[a]=== board[b]&& board[a] === board[c]){
     return board[a];
     }
     if (!board.includes(null)){
     return "tie";
     }
-    return null;
-    
+   
+}
 
 
     function sayWinner(){
@@ -93,11 +109,21 @@ function winningLogic(board){
         }else{
             console.log("Game in Progress")
         }
-        sayWinner();
+        }
+
+sayWinner();
+return null;
 }
 
+function isGameOver(){
+    let gameOver;
+    for(let position of positions){
+    {
+       
+        gameOver = true;
+        position = null;
+      
+    }}
 
-
+    return {gameOver}
 }
-winningLogic(gameState.board);
-
