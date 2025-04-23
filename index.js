@@ -1,6 +1,6 @@
 console.log("Welcome to tictactoe console game!");
 
-//let gameStart = false;
+let gameStart = false;
 
 const gameState ={
         board:[[null,null,null]
@@ -11,20 +11,19 @@ const gameState ={
         gameStatus:"in Progress",
 
         switchTurns(){
-          return  this.currentPlayer === "X"?"O":"X";
-            
+          return  this.currentPlayer === "X"?"O":"X";   
         }
 }
 let positions = gameState.board.flat();
 
-const firstPlayer={
+const firstPlayer = {
     marker :"X",
     score:0,
     name:"first player",
 }
 
 
-const secondPlayer ={
+const secondPlayer = {
     marker:"O",
     score:0,
     name:"second player",
@@ -116,14 +115,22 @@ return null;
 }
 
 function isGameOver(){
-    let gameOver;
-    for(let position of positions){
-    {
-       
-        gameOver = true;
-        position = null;
-      
-    }}
+    
+    // checking each tab to see if it does not have null.
+    positions.every(position => {
+        position !== null
 
-    return {gameOver}
+        return true;
+    });
+
+    return false;
 }
+
+function reset(){
+  
+    gameState.board = [[null,null,null],
+                       [null,null,null],
+                       [null,null,null]]
+
+         return gameStart = false;              
+}reset();
