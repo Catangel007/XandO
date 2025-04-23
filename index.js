@@ -11,7 +11,7 @@ const gameState ={
         gameStatus:"in Progress",
 
         switchTurns(){
-          return  this.currentPlayer === "X"?"O":"X";   
+           this.currentPlayer = this.currentPlayer === "X"?"O":"X";   
         }
 }
 let positions = gameState.board.flat();
@@ -30,11 +30,14 @@ const secondPlayer = {
 }
 
 
-
+let winner= winningLogic(positions);
 
 // play game with our objects.
 function playGame(){
-    
+
+       if(gameStart === true){
+
+        let gameOver = isGameOver();
         let board = positions; // Assuming positions is defined elsewhere
         let current = gameState.currentPlayer;
         
@@ -48,7 +51,7 @@ function playGame(){
         
         // Check if there are any empty positions
         if (emptyPositions.length === 0) {
-            isGameOver()
+           
             return board; // Board is full
         }
         
@@ -59,23 +62,45 @@ function playGame(){
         if (current === "X") {
             board[randomPosition] = firstPlayer.marker;
             gameState.switchTurns();
-            updateGameBoard()
+            updateGameBoard();
         } else if (current === "O") {
             board[randomPosition] = secondPlayer.marker;
             gameState.switchTurns();
-            updateGameBoard()
+            updateGameBoard();
         }
         
-        return board;
+        function sayWinner(){
+            if(winner === "X"){
+                console.log(`${firstPlayer.name} wins`)
+            } else if(winner === "O"){
+                console.log(`${secondPlayer.name} wins`)
+            } else if(winner === "tie"){
+                console.log(`it is a tie.`)
+            }else{
+                console.log("Game in Progress")
+            }
+            }
     
+    sayWinner();
+
+      if (gameOver === true){
+        reset();
+      } else{
+        playGame()
+      }
+
+        return board;
+    } 
+    return null; 
  }
      playGame()
 
 function updateGameBoard(){
-    console.log(gameState.positions)
-
+    console.log(positions)
+    console.log(` the current player is ${gameState.currentPlayer}.`)
 }
-const winner= winningLogic(gameState.board);
+
+
 
 
 
@@ -98,19 +123,7 @@ function winningLogic(board){
 }
 
 
-    function sayWinner(){
-        if(winner === "X"){
-            console.log(`${firstPlayer.name} wins`)
-        } else if(winner === "O"){
-            console.log(`${secondPlayer.name} wins`)
-        } else if(winner === "tie"){
-            console.log(`it is a tie.`)
-        }else{
-            console.log("Game in Progress")
-        }
-        }
-
-sayWinner();
+    
 return null;
 }
 
@@ -118,8 +131,8 @@ function isGameOver(){
     
     // checking each tab to see if it does not have null.
     positions.every(position => {
-        position !== null
-
+        position !== null;
+        reset();
         return true;
     });
 
@@ -131,6 +144,7 @@ function reset(){
     gameState.board = [[null,null,null],
                        [null,null,null],
                        [null,null,null]]
-
-         return gameStart = false;              
-}reset();
+    gameStart = true;
+         return  gameStart;            
+                      
+}
