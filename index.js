@@ -38,7 +38,7 @@ function playGame(){
        if(gameStart === true){
 
         let gameOver = isGameOver();
-        let board = positions; // Assuming positions is defined elsewhere
+        let board = positions;
         let current = gameState.currentPlayer;
         
         // Filter for empty positions
@@ -54,17 +54,19 @@ function playGame(){
            
             return board; // Board is full
         }
-        
-        // Select random empty position
-        let randomIndex = Math.floor(Math.random() * emptyPositions.length);
-        let randomPosition = emptyPositions[randomIndex];
+        let point = "";
+        // // Select random empty position
+        // let randomIndex = Math.floor(Math.random() * emptyPositions.length);
+        // let randomPosition = emptyPositions[randomIndex];
         
         if (current === "X") {
-            board[randomPosition] = firstPlayer.marker;
+            console.log ("choose the positions from 0-8 board[?]")
+            board[point] = firstPlayer.marker;
             gameState.switchTurns();
             updateGameBoard();
         } else if (current === "O") {
-            board[randomPosition] = secondPlayer.marker;
+            console.log ("choose the positions from 0-8 board[?]")
+            board[point] = firstPlayer.marker;
             gameState.switchTurns();
             updateGameBoard();
         }
@@ -96,7 +98,7 @@ function playGame(){
      playGame()
 
 function updateGameBoard(){
-    console.log(positions)
+    console.log(playGame());
     console.log(` the current player is ${gameState.currentPlayer}.`)
 }
 
